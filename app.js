@@ -17,6 +17,8 @@ var client_id = config.clientID; // Your client id
 var client_secret = config.clientSecret; // Your secret
 var redirect_uri = 'http://localhost:3000/callback'; // Your redirect uri
 
+const CONSOLE_LIMIT = 1000;
+
 /**
  * Generates a random string containing numbers and letters
  * @param  {number} length The length of the string
@@ -107,7 +109,7 @@ app.get('/callback', function (req, res) {
 
 				// use the access token to access the Spotify Web API
 				request.get(topOptions, function (error, response, body) {
-					for (let i = 0; i < body.items.length; i++) {
+					for (let i = 0; i < body.items.length && i < CONSOLE_LIMIT; i++) {
 						console.log(body);
 					}
 				});
