@@ -91,10 +91,10 @@ app.get('/callback', function (req, res) {
         json: true
     };
 
-    request.post(authOptions, handleAuthResponse(error, response, body));
+    request.post(authOptions, (error, response, body) => handleAuthResponse(error, response, body, res));
 });
 
-function handleAuthResponse(error, response, body) {
+function handleAuthResponse(error, response, body, res) {
     if (!! error || response.statusCode !== 200) {
         res.redirect(
             '/#' +
