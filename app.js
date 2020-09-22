@@ -44,7 +44,7 @@ app.use(express.static(__dirname + '/public'))
 
 app.get('/login', function (req, res) {
 	var state = generateRandomString(16);
-	res.cookie(stateKey, state);
+    res.cookie(stateKey, state, {secure: true, httpOnly: true})
 
 	// your application requests authorization
 	var scope = 'user-read-private user-read-email user-top-read';
